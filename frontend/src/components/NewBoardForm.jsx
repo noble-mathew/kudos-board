@@ -10,7 +10,7 @@ export function NewBoardForm({ onSubmit, onClose }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        onSubmit({ title, category, author, image })
+        onSubmit({ title, category, imageUrl: image, author })
         onClose()
     }
 

@@ -11,8 +11,8 @@ export function Board({ id, title, category, imageUrl, author, onDelete }) {
         setShowPin(prev => !prev);
     }
 
-    const handleImgError = e => {
-    e.currentTarget.onerror = null;
+    const handleImgError = (e) => {
+        e.currentTarget.onerror = null;
         e.currentTarget.src = DEFAULT_IMG;
     };
 
@@ -25,7 +25,7 @@ export function Board({ id, title, category, imageUrl, author, onDelete }) {
         <div id="board">
             <img className="delete-board" src="/delete.png" onClick={() => onDelete(id)}/>
             <img onClick={handlePinChange} className={showPin ? "pin-board show" : "pin-board"} src="/bookmark.png"/>
-            <img src={imageUrl || DEFAULT_IMG} onError={handleImgError} alt={`failed to load image for ${title}`}/>
+            <img src={imageUrl || DEFAULT_IMG} onError={handleImgError} alt={`image for ${title}`}/>
             <div className="board-info">
                 <h3 className="board-title">{title}</h3>
                 <p>{category}</p>
