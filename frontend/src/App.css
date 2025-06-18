@@ -1,0 +1,333 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.App main {
+  flex-grow: 1;
+}
+
+#board-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+header h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 50px;
+  position: static;     
+  text-align: center;
+  color: rgb(219, 187, 240);
+  font-weight: 900;
+}
+
+#board-search form {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  margin: 0 auto;      
+  flex-wrap: wrap;       
+  margin-left: 20px;
+}
+
+#board-search input {
+  height: 30px;
+  flex: 1 1 auto;
+  min-width: 250px;
+  border: 1px solid rgb(186, 186, 186);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  margin-right: 5px;
+}
+
+#board-search input:focus {
+  outline: none;
+  border: 1.5px solid rgb(187, 146, 214);
+}
+
+#board-search button {
+  flex: 0 1 auto;        /* don’t grow or shrink */
+  margin-right: 5px;
+}
+
+#search-buttons {
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+#board-header button {
+  color: rgb(255, 255, 255);
+  height: 28px;
+  width: fit-content;
+  border: 0;
+  background-color: rgb(219, 187, 240);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#board-header button:hover {
+  cursor: pointer;
+  background-color: rgb(187, 146, 214);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+#board-container {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+  align-items: stretch; 
+}
+
+#board {
+  position: relative;
+  width: 225px;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  -webkit-transition: transform 0.2s, box-shadow 0.2s;
+  -moz-transition: transform 0.2s, box-shadow 0.2s;
+  -ms-transition: transform 0.2s, box-shadow 0.2s;
+  -o-transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+#board img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  flex-grow: 1;
+}
+
+.board-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 1rem;    
+  line-height: 1.4;     
+  padding: 0.5rem 0;
+}
+
+#board p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.delete-board {
+  position: absolute;
+  top: 4px;     
+  right: 4px;   
+  width: 40px;
+  height: 40px;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+
+.pin-board {
+  position: absolute;
+  top: 10px;     
+  left: 9px;   
+  width: 25px;
+  height: 40px;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+
+.show {
+  display: block;
+  opacity: 1;
+}
+
+#board:hover .delete-board, #board:hover .pin-board{
+  display: block;
+  opacity: 1;
+}
+
+#board:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  transform: scale(1.05);
+}
+
+.delete-board:hover, .pin-board:hover{
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+
+#Modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px);
+    overflow: auto;
+    animation: show 0.5s;
+    -webkit-animation: show 0.5s;
+    z-index: 2;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        transform: scale(0);
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+    }
+}
+
+#Modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+#Modal-content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    width: 25%;
+    height: 40%;
+    min-width: 200px;
+    min-height: fit-content;
+    overflow-y: scroll;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 50px rgba(219, 187, 240);
+}
+
+#Modal-content h2 {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+#Modal-content label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+
+#Modal-content input,
+#Modal-content select,
+#Modal-content button {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#Modal-content input:focus,
+#Modal-content select:focus,
+#Modal-content button:focus {
+  outline: none;
+  border: 1.5px solid rgb(219, 187, 240);
+}
+
+#Modal-content button {
+  background-color: rgb(219, 187, 240);
+  color: #fff;
+  border: none;
+}
+
+#Modal-content button:hover {
+  background-color: rgb(187, 146, 214);
+  cursor: pointer;
+}
+
+#Modal-close {
+    position: absolute;
+    left: 3%;
+    top: 2%;
+    font-size: 20px;
+}
+
+#Modal-close:hover {
+    color: rgb(187, 146, 214);
+    cursor: pointer;
+}
+
+footer {
+  background-color: rgb(219, 187, 240);
+  height: 70px;
+  line-height: 70px; 
+  text-align: center;
+  margin-top: 30px;
+}

@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Board" ALTER COLUMN "imageUrl" DROP DEFAULT,
+ALTER COLUMN "author" DROP DEFAULT;
