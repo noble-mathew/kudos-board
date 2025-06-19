@@ -13,7 +13,7 @@ export function BoardPage() {
     const [filterOption, setFilterOption] = useState("");
     const [displayNewBoardForm, setDisplayNewBoardForm] = useState(false);
     const [boardData, setBoardData] = useState([]);
-    
+
     const handleNewBoardDisplayChange = () => {
         setDisplayNewBoardForm(prev => !prev);
     }
@@ -48,6 +48,17 @@ export function BoardPage() {
         await fetch(`${import.meta.env.VITE_WEB_URL}/${id}`, { method: "DELETE" })
         await loadBoards();
     }
+
+    const handlePin = async (id, currentlyPinned) => {
+        await fetch( `${import.meta.env.VITE_WEB_URL}/${id}`, {
+            method: "PUT",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({ pinned: !currentlyPinned }),
+        }
+        );
+
+        await loadBoards();
+    };
     
     const loadBoards = async (category, search) => {
         const boards = await getBoardData(category, search);
@@ -73,7 +84,7 @@ export function BoardPage() {
                 <button onClick={handleNewBoardDisplayChange}>Create New Board</button>
             </header>
             <main>
-                <BoardContainer boardData={boardData} onDelete={handleDelete} />
+                <BoardContainer boardData={boardData} onDelete={handleDelete} onPin={handlePin} />
                 {displayNewBoardForm && <NewBoardForm onClose={handleNewBoardDisplayChange} onSubmit={handleCreate}/>}
             </main>
         </div>

@@ -20,7 +20,8 @@ model Board {
   imageUrl String?
   author String?
   createdAt   DateTime @default(now())
-  cards Card[]   // ← one-to-many relation
+  pinned     Boolean  @default(false)
+  cards Card[]
 }
 
 model Card {
