@@ -3,10 +3,10 @@ import "../App.css"
 import { useEffect, useState } from 'react'
 import { getBoardData } from '../utils/api'
 
-import { Search } from '../components/Search'
-import { Nav } from '../components/Nav'
-import { BoardContainer } from '../components/BoardContainer'
-import { NewBoardForm } from '../components/NewBoardForm'
+import { Search } from './Search'
+import { Nav } from './Nav'
+import { BoardContainer } from './BoardContainer'
+import { NewBoardForm } from './NewBoardForm'
 
 export function BoardPage() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -45,7 +45,7 @@ export function BoardPage() {
     };
     
     const handleDelete = async (id) => {
-        await fetch(`${import.meta.env.VITE_WEB_URL}${id}`, { method: "DELETE" })
+        await fetch(`${import.meta.env.VITE_WEB_URL}/${id}`, { method: "DELETE" })
         await loadBoards();
     }
     
@@ -61,7 +61,7 @@ export function BoardPage() {
     }, [])
     
     useEffect(() => {
-        loadBoards(searchQuery, filterOption);
+        loadBoards(filterOption, searchQuery);
     }, [searchQuery, filterOption])
     
     return (

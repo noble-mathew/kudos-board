@@ -6,10 +6,13 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 // import routes
+const routes = require("./routes/cards");
+
 app.use(express.json());
 app.use(cors());
+app.use("/boards/:boardId", routes)
 
-app.get("/", async (req, res) => {
+app.get("/boards", async (req, res) => {
     const { category, title } = req.query;
     const categoryMap = {
         celebration: "Celebration",
@@ -42,7 +45,7 @@ app.get("/", async (req, res) => {
 });
 
 
-app.delete("/:boardId", async (req, res) => {
+app.delete("/boards/:boardId", async (req, res) => {
     const { boardId } = req.params;
     const deletedBoard = await prisma.board.delete({
         where: { id: parseInt(boardId) }
@@ -50,7 +53,7 @@ app.delete("/:boardId", async (req, res) => {
     res.json(deletedBoard);
 })
 
-app.post("/", async (req, res) => {
+app.post("/boards", async (req, res) => {
     const { title, category, imageUrl, author, createdAt } = req.body;
     const newBoard = await prisma.board.create({
         data: {
