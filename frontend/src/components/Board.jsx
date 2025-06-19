@@ -23,8 +23,8 @@ export function Board({ id, title, category, imageUrl, author, onDelete }) {
 
     return (
         <div id="board">
-            <img className="delete-board" src="/delete.png" onClick={() => onDelete(id)}/>
-            <img onClick={handlePinChange} className={showPin ? "pin-board show" : "pin-board"} src="/bookmark.png"/>
+            <img className="delete-board" src="/delete.png" onClick={(e) => { e.stopPropagation(); e.preventDefault(); onDelete(id)}}/>
+            <img onClick={(e) => {e.stopPropagation(); e.preventDefault(); handlePinChange()}} className={showPin ? "pin-board show" : "pin-board"} src="/bookmark.png"/>
             <img src={imageUrl || DEFAULT_IMG} onError={handleImgError} alt={`image for ${title}`}/>
             <div className="board-info">
                 <h3 className="board-title">{title}</h3>

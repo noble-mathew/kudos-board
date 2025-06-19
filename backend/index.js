@@ -6,16 +6,41 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 // import routes
-const routes = require("./routes/boards");
-
 app.use(express.json());
 app.use(cors());
-app.use("/boards", routes);
 
 app.get("/", async (req, res) => {
-    const boards = await prisma.board.findMany();
+    const { category, title } = req.query;
+    const categoryMap = {
+        celebration: "Celebration",
+        "thank-you": "Thank You",
+        inspiration: "Inspiration",
+    };
+
+    const findOptions = {
+        where: {},
+    };
+
+    if (categoryMap[category]) {
+        findOptions.where.category = categoryMap[category];
+    }
+
+    if (title) {
+        findOptions.where.title = {
+            contains: title,
+            mode: "insensitive",
+        };
+    }
+
+    if (category === "recent") {
+        findOptions.orderBy = { createdAt: "desc" };
+        findOptions.take = 6;
+    }
+
+    const boards = await prisma.board.findMany(findOptions);
     res.json(boards);
-})
+});
+
 
 app.delete("/:boardId", async (req, res) => {
     const { boardId } = req.params;

@@ -17,7 +17,12 @@ export function Search({ onSubmit, value }) {
     const handleClear = (e) => {
         e.preventDefault();
         setInput("");
+        onSubmit("");
     }
+
+    useEffect(() => {
+        setInput(value);
+    }, [value]);
 
     return (
         <form id="board-search" onSubmit={handleSubmit} onReset={handleClear}>

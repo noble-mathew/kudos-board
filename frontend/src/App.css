@@ -97,6 +97,11 @@ nav {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
+#board-header button.active {
+  background-color: rgb(187, 146, 214);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
 #board-container {
   width: 95%;
   margin: auto;
