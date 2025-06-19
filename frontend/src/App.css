@@ -3,14 +3,19 @@
   box-sizing: border-box;
 }
 
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
-.App main {
-  flex-grow: 1;
+.App > main {
+  flex: 1 0 auto;
 }
 
 #board-header {
@@ -104,7 +109,7 @@ nav {
 
 #board-container {
   width: 95%;
-  margin: auto;
+  margin: 30px auto;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -205,6 +210,11 @@ nav {
   -o-transform: scale(1.1);
 }
 
+.board-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 #Modal {
     position: fixed;
     z-index: 1;
@@ -272,7 +282,14 @@ nav {
     z-index: 2;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     box-shadow: 0 0 50px rgba(219, 187, 240);
+}
+
+#Modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;    
 }
 
 #Modal-content h2 {
@@ -334,5 +351,106 @@ footer {
   height: 70px;
   line-height: 70px; 
   text-align: center;
-  margin-top: 30px;
+  margin-top: auto;
+}
+
+#back-home {
+  position: fixed;
+  top: 2%;
+  left: 1%;
+  height: 40px;
+  width: 40px;
+}
+
+#card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 15px;
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+
+button {
+  color: rgb(255, 255, 255);
+  height: 28px;
+  width: fit-content;
+  border: 0;
+  background-color: rgb(219, 187, 240);
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgb(187, 146, 214);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+#card-container {
+  width: 95%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-around;
+  align-items: stretch; 
+}
+
+#card {
+  position: relative;
+  width: 225px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  -webkit-transition: transform 0.2s, box-shadow 0.2s;
+  -moz-transition: transform 0.2s, box-shadow 0.2s;
+  -ms-transition: transform 0.2s, box-shadow 0.2s;
+  -o-transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+#card img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  flex-grow: 1;
+}
+
+#card:hover .delete-board {
+  display: block;
+  opacity: 1;
+}
+
+#card:hover {
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  transform: scale(1.05);
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 1rem;    
+  line-height: 1.4;     
+  padding: 0.5rem 0;
+  gap: 0.5rem;
 }

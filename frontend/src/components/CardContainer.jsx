@@ -4,12 +4,12 @@ import "../App.css"
 
 import { Card } from "./Card"
 
-export function BoardContainer({ cardDate, onDelete, onUpvote}) {
+export function CardContainer({ cardData, onDelete, onVote}) {
     return (
-        <div id="board-container">
-            {boardData?.map(board => {
-                return <Board key={board.id} id={board.id} title={board.title} category={board.category} imageUrl={board.imageUrl} author={board.author} onDelete={onDelete} />
-            })}
+        <div id="card-container">
+            {cardData ? cardData.map(card => {
+                return <Card key={card.id} id={card.id} title={card.title} description={card.description} imageUrl={card.imageUrl} owner={card.owner} voteCount={card.votes} onDelete={onDelete} onVote={onVote} />
+            }) : <h2>No Cards Found</h2>}
         </div>
     )
 }

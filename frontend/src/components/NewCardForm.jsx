@@ -2,16 +2,16 @@ import { useState } from "react"
 
 import "../App.css"
 
-export function NewBoardForm({ onSubmit, onClose }) {
+export function NewCardForm({ onSubmit, onClose }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [searchGIF, setSearchGIF] = useState("");
-    const [gifUrl, setGifUrl] = useState("");
+    const [image, setImage] = useState("");
     const [owner, setOwner] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit({ title, description, gifUrl, owner });
+        onSubmit({ title, description, imageUrl: image, owner });
         onClose();
     }
 
@@ -23,8 +23,8 @@ export function NewBoardForm({ onSubmit, onClose }) {
         setDescription(e.target.value);
     }
 
-    const handleAuthorChange = (e) => {
-        setAuthor(e.target.value);
+    const handleOwnerChange = (e) => {
+        setOwner(e.target.value);
     }
 
     const handleImageChange = (e) => {
@@ -36,30 +36,15 @@ export function NewBoardForm({ onSubmit, onClose }) {
             <div onClick={onClose} id="Modal-overlay"></div>
             <div id="Modal-content">
                 <p id="Modal-close" onClick={onClose}><strong>&times;</strong></p>
-                <h2>Create a New Board</h2>
+                <h2>Create a New Card</h2>
                 <form onSubmit={handleSubmit}>
-                    <label> Title:
-                        <input value={title} placeholder="Board Title" onChange={handleTitleChange} required/>
-                    </label>
-
-                    <label> Category:
-                        <select value={category} onChange={handleCategoryChange} required>
-                            <option value="" disabled hidden>Select a category</option>
-                            <option value="Celebration">Celebration</option>
-                            <option value="Thank You">Thank You</option>
-                            <option value="Inspiration">Inspiration</option>
-                        </select>
-                    </label>
-
-                    <label> Image:
-                        <input value={image} placeholder="Board Image URL (optional)" onChange={handleImageChange}/>
-                    </label>
-
-                    <label> Author:
-                        <input value={author} placeholder="Board Author (optional)" onChange={handleAuthorChange}/>
-                    </label>
-
-                    <button type="submit">Create Board</button>
+                    <input value={title} placeholder="Card Title" onChange={handleTitleChange} required/>
+                    <input value={description} placeholder="Card Description" onChange={handleDescriptionChange} required/>
+                    <input value={image} placeholder="Search GIFs" onChange={handleImageChange}/>
+                    <button>Search GIF</button>
+                    <input value={image} placeholder="Card Image URL" onChange={handleImageChange} required/>
+                    <input value={owner} placeholder="Card Owner (optional)" onChange={handleOwnerChange}/>
+                    <button type="submit">Create Card</button>
                 </form>
             </div>
         </div>

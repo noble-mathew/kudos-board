@@ -9,9 +9,9 @@ export function NewBoardForm({ onSubmit, onClose }) {
     const [image, setImage] = useState("");
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         onSubmit({ title, category, imageUrl: image, author })
-        onClose()
+        onClose();
     }
 
     const handleTitleChange = (e) => {
@@ -37,11 +37,11 @@ export function NewBoardForm({ onSubmit, onClose }) {
                 <p id="Modal-close" onClick={onClose}><strong>&times;</strong></p>
                 <h2>Create a New Board</h2>
                 <form onSubmit={handleSubmit}>
-                    <label> Title:
+                    <label>
                         <input value={title} placeholder="Board Title" onChange={handleTitleChange} required/>
                     </label>
 
-                    <label> Category:
+                    <label>
                         <select value={category} onChange={handleCategoryChange} required>
                             <option value="" disabled hidden>Select a category</option>
                             <option value="Celebration">Celebration</option>
@@ -50,11 +50,11 @@ export function NewBoardForm({ onSubmit, onClose }) {
                         </select>
                     </label>
 
-                    <label> Image:
+                    <label> 
                         <input value={image} placeholder="Board Image URL (optional)" onChange={handleImageChange}/>
                     </label>
 
-                    <label> Author:
+                    <label>
                         <input value={author} placeholder="Board Author (optional)" onChange={handleAuthorChange}/>
                     </label>
 
