@@ -3,9 +3,31 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-color:      #fff;
+  --text-color:    #000;
+  --primary:       rgb(219, 187, 240);
+  --primary-hover: rgb(187, 146, 214);
+  --shadow:        rgba(0,0,0,0.2);
+}
+
+[data-theme="dark"] {
+  --bg-color:      #585757;
+  --text-color:    #eee;
+  --button:       #5a3ea8;
+  --button-hover: #7e58d3;
+  --shadow:        rgba(255, 255, 255, 0.8);
+}
+
+
 html, body, #root {
   height: 100%;
   margin: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .App {
@@ -57,6 +79,8 @@ header h1 {
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   margin-right: 5px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 #board-search input:focus {
@@ -87,7 +111,7 @@ nav {
   height: 28px;
   width: fit-content;
   border: 0;
-  background-color: rgb(219, 187, 240);
+  background-color: var(--primary);
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -98,12 +122,12 @@ nav {
 
 #board-header button:hover {
   cursor: pointer;
-  background-color: rgb(187, 146, 214);
+  background-color: var(--primary-hover);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 #board-header button.active {
-  background-color: rgb(187, 146, 214);
+  background-color: var(--primary-hover);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
@@ -267,7 +291,8 @@ nav {
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
-    background-color: #ffffff;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     padding: 20px;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -306,6 +331,11 @@ nav {
   margin-bottom: 12px;
 }
 
+#Modal-content input, #Modal-content select {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
 #Modal-content input,
 #Modal-content select,
 #Modal-content button {
@@ -324,13 +354,13 @@ nav {
 }
 
 #Modal-content button {
-  background-color: rgb(219, 187, 240);
+  background-color: var(--primary);
   color: #fff;
   border: none;
 }
 
 #Modal-content button:hover {
-  background-color: rgb(187, 146, 214);
+  background-color: var(--primary-hover);
   cursor: pointer;
 }
 
@@ -347,7 +377,8 @@ nav {
 }
 
 footer {
-  background-color: rgb(219, 187, 240);
+  background-color: var(--primary);
+  color: var(--text-color);
   height: 70px;
   line-height: 70px; 
   text-align: center;
@@ -378,7 +409,7 @@ button {
   height: 28px;
   width: fit-content;
   border: 0;
-  background-color: rgb(219, 187, 240);
+  background-color: var(--primary);
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -389,7 +420,7 @@ button {
 
 button:hover {
   cursor: pointer;
-  background-color: rgb(187, 146, 214);
+  background-color: var(--primary-hover);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
@@ -453,4 +484,12 @@ button:hover {
   line-height: 1.4;     
   padding: 0.5rem 0;
   gap: 0.5rem;
+}
+
+#theme-toggle {
+  position: fixed;
+  top: 2%;
+  right: 1%;
+  height: 40px;
+  width: 40px;
 }
