@@ -21,6 +21,7 @@ model Board {
   author String?
   createdAt   DateTime @default(now())
   pinned     Boolean  @default(false)
+  pinnedAt   DateTime?
   cards Card[]
 }
 
