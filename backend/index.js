@@ -41,6 +41,7 @@ app.get("/boards", async (req, res) => {
     }
 
     if (category === "recent") {
+        findOptions.orderBy = [{createdAt: "desc"}]
         findOptions.take = 6;
     }
 
