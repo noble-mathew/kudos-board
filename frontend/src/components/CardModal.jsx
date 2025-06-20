@@ -5,7 +5,7 @@ import "../App.css"
 import { getCommentData } from "../utils/api";
 
 import { Comment } from "./Comment"
-import { NewCommentForm } from "./newCommentForm";
+import { NewCommentForm } from "./NewCommentForm";
 
 const DEFAULT_IMG = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXV4NGcwcGY2MGVyYmk4OGxlNHRnOXZzYzV6dHR0MDdtbmRzaGR6bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZsuqjwKgAtShO/giphy.gif";
 
