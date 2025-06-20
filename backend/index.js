@@ -6,13 +6,11 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 // import routes
-const cardRoute = require("./routes/cards");
-const commentRoute = require("./routes/comments")
+const routes = require("./routes/cards");
 
 app.use(express.json());
 app.use(cors());
-app.use("/boards/:boardId", cardRoute)
-app.use("/boards/:boardId/cards/:cardId", commentRoute)
+app.use("/boards/:boardId", routes)
 
 app.get("/boards", async (req, res) => {
     const { category, title } = req.query;
@@ -27,7 +25,7 @@ app.get("/boards", async (req, res) => {
         orderBy: [
             { pinned: "desc" },  
             { pinnedAt: "desc" },  
-            { createdAt: "asc" }  
+            { createdAt: "desc" }  
         ],
     };
 
