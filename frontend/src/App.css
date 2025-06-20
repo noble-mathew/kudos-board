@@ -4,21 +4,23 @@
 }
 
 :root {
-  --bg-color:      #fff;
+  --bg-color: #fff;
   --bg-color-opposite: rgb(199, 199, 199);
-  --text-color:    #000;
-  --primary:       rgb(219, 187, 240);
-  --primary-hover: rgb(187, 146, 214);
-  --shadow:        rgba(0,0,0,0.2);
+  --text-color: #000;
+  --header-color: #fff;
+  --primary: #576baf;
+  --primary-hover: rgb(36, 105, 233);
+  --shadow: rgba(0,0,0,0.2);
 }
 
 [data-theme="dark"] {
-  --bg-color:      #585757;
+  --bg-color: #585757;
   --bg-color-opposite: rgb(120, 120, 120);
-  --text-color:    #eee;
-  --primary:       #654ea3;
-  --primary-hover: #805bd0;
-  --shadow:        rgba(255, 255, 255, 0.8);
+  --text-color: #eee;
+  --header-color: #313131;
+  --primary: #D2C7F5;
+  --primary-hover: #a98aeb;
+  --shadow: rgba(255, 255, 255, 0.8);
 }
 
 
@@ -36,6 +38,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  
 }
 
 .App > main {
@@ -50,6 +53,8 @@ body {
   width: 100%;
   margin-top: 20px;
   gap: 15px;
+  background-color: var(--primary);
+  padding: 20px;
 }
 
 header h1 {
@@ -57,7 +62,7 @@ header h1 {
   font-size: 50px;
   position: static;     
   text-align: center;
-  color: rgb(219, 187, 240);
+  color: var(--header-color);
   font-weight: 900;
 }
 
@@ -120,6 +125,7 @@ nav {
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: var(--header-color);
 }
 
 #board-header button:hover {
@@ -575,4 +581,23 @@ button:hover {
 .comment-buttons { 
   display: flex;
   gap: 0.5rem; 
+}
+
+.gif-form-items { 
+  display: flex;
+  gap: 0.5rem; 
+}
+
+.gif-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.gif { 
+  cursor: pointer;
+  width: 100%;
 }
