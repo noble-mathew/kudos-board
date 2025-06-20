@@ -5,6 +5,7 @@
 
 :root {
   --bg-color:      #fff;
+  --bg-color-opposite: rgb(199, 199, 199);
   --text-color:    #000;
   --primary:       rgb(219, 187, 240);
   --primary-hover: rgb(187, 146, 214);
@@ -13,6 +14,7 @@
 
 [data-theme="dark"] {
   --bg-color:      #585757;
+  --bg-color-opposite: rgb(120, 120, 120);
   --text-color:    #eee;
   --primary:       #654ea3;
   --primary-hover: #805bd0;
@@ -254,6 +256,21 @@ nav {
     z-index: 2;
 }
 
+#Modal-comment {
+  position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px);
+    overflow: auto;
+    animation: show 0.5s;
+    -webkit-animation: show 0.5s;
+    z-index: 3;
+}
+
 @keyframes show {
     from {
         opacity: 0;
@@ -282,6 +299,15 @@ nav {
     z-index: 2;
 }
 
+#Modal-overlay-commment {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
 #Modal-content {
     position: relative;
     top: 50%;
@@ -303,12 +329,55 @@ nav {
     height: 40%;
     min-width: 200px;
     min-height: fit-content;
+    max-height: 100vh;
     overflow-y: scroll;
     z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    gap: 5px;
     box-shadow: 0 0 50px rgba(219, 187, 240);
+    text-align: center;
+}
+
+#Modal-content-comment {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    width: 25%;
+    height: 40%;
+    min-width: 200px;
+    min-height: fit-content;
+    max-height: 100vh;
+    overflow-y: scroll;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 5px;
+    box-shadow: 0 0 50px rgba(219, 187, 240);
+    text-align: center;
+}
+
+#Modal-content img {
+  transform: scale(0.9);
+  -webkit-transform: scale(0.9);
+  -moz-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  -o-transform: scale(0.9);
 }
 
 #Modal-content form {
@@ -492,4 +561,18 @@ button:hover {
   right: 1%;
   height: 40px;
   width: 40px;
+}
+
+.comment {
+  background-color: var(--bg-color-opposite);
+  margin-bottom: 10px;
+}
+
+.comment-form {
+  margin-top: 10px;
+}
+
+.comment-buttons { 
+  display: flex;
+  gap: 0.5rem; 
 }

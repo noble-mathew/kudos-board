@@ -14,26 +14,39 @@ datasource db {
 }
 
 model Board {
-  id Int @id @default(autoincrement())
-  title String
-  category String
-  imageUrl String?
-  author String?
-  createdAt   DateTime @default(now())
-  pinned     Boolean  @default(false)
+  id         Int       @id @default(autoincrement())
+  title      String
+  category   String
+  imageUrl   String?
+  author     String?
+  createdAt  DateTime  @default(now())
+  pinned     Boolean   @default(false)
   pinnedAt   DateTime?
-  cards Card[]
+  cards      Card[]
 }
 
 model Card {
-  id Int @id @default(autoincrement())
-  boardId Int
-  board Board @relation(fields: [boardId], references: [id], onDelete: Cascade)
-  title String
+  id          Int       @id @default(autoincrement())
+  boardId     Int
+  board       Board     @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  title       String
   description String
-  imageUrl String
-  owner String?
-  votes Int @default(0)
+  imageUrl    String
+  owner       String?
+  votes       Int       @default(0)
+  createdAt   DateTime  @default(now())
+  comments    Comment[]
 
   @@index([boardId])
+}
+
+model Comment {
+  id        Int       @id @default(autoincrement())
+  cardId    Int
+  card      Card      @relation(fields: [cardId], references: [id], onDelete: Cascade)
+  message   String  
+  author    String?  
+  createdAt DateTime  @default(now())
+
+  @@index([cardId])
 }
