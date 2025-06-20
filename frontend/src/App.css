@@ -14,8 +14,8 @@
 [data-theme="dark"] {
   --bg-color:      #585757;
   --text-color:    #eee;
-  --button:       #5a3ea8;
-  --button-hover: #7e58d3;
+  --primary:       #654ea3;
+  --primary-hover: #805bd0;
   --shadow:        rgba(255, 255, 255, 0.8);
 }
 
