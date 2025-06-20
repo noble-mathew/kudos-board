@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:cardId", async (req, res) => {
-    const cardId = parseInt(req.params.cardId, 10);
+    const cardId = parseInt(req.params.cardId);
     const { votes } = req.body;  
 
     const updated = await prisma.card.update({

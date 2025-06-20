@@ -40,3 +40,18 @@ export async function getCardData(boardId) {
         console.error(`Fetch error: ${error}`);
     }
 }
+
+export async function getCommentData(boardId, cardId) {
+    try {
+        const webUrl = `${import.meta.env.VITE_WEB_URL}/${boardId}/${cardId}`;
+        const resp = await fetch(webUrl);
+
+        if (!resp.ok) {
+            throw new Error('Failed to fetch comment data');
+        }
+        const data = await resp.json();
+        return data;
+    } catch (error) {
+        console.error(`Fetch error: ${error}`);
+    }
+}

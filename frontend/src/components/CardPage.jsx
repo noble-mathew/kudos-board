@@ -6,15 +6,26 @@ import { getCardData } from '../utils/api'
 
 import { CardContainer } from "./CardContainer"
 import { NewCardForm } from "./NewCardForm"
+import { CardModal } from "./CardModal"
 
 export function CardPage() {
     const { boardId } = useParams();
 
     const [displayNewCardForm, setDisplayNewCardForm] = useState(false);
+    const [displayCardModal, setDisplayCardModal] = useState(false);
+    const [modalCardData, setModalCardData] = useState();
     const [cardData, setCardData] = useState([]);
     
     const handleNewCardDisplayChange = () => {
         setDisplayNewCardForm(prev => !prev);
+    }
+
+    const handleCardModalDisplay = () => {
+        setDisplayCardModal(prev => !prev);
+    }
+
+    const handleModalCardData = (card) => {
+        setModalCardData(card);
     }
 
     const handleCreateCard = async (newCard) => {
@@ -80,8 +91,9 @@ export function CardPage() {
                 <button onClick={handleNewCardDisplayChange}>Create New Card</button>
             </header>
             <main>
-                <CardContainer cardData={cardData} onDelete={handleDelete} onVote={handleUpvote} />
-                {displayNewCardForm && <NewCardForm onClose={handleNewCardDisplayChange} onSubmit={handleCreateCard}/>}
+                <CardContainer boardId={boardId} cardData={cardData} onDelete={handleDelete} onVote={handleUpvote} onClick={handleCardModalDisplay} modalData={handleModalCardData} />
+                {displayNewCardForm && <NewCardForm onClose={handleNewCardDisplayChange} onSubmit={handleCreateCard} />}
+                {displayCardModal && <CardModal onClose={handleCardModalDisplay} cardData={modalCardData} boardId={boardId} />}
             </main>
         </div>
     )
