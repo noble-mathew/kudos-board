@@ -24,6 +24,7 @@ app.get("/boards", async (req, res) => {
         where: {},
         orderBy: [
             { pinned: "desc" },  
+            { pinnedAt: "desc" },  
             { createdAt: "asc" }  
         ],
     };
@@ -73,9 +74,11 @@ app.put("/boards/:boardId", async (req, res) => {
     const id     = parseInt(req.params.boardId);
     const { pinned } = req.body;
 
+    const pinnedAt = pinned ? new Date() : null;
+
     const updated = await prisma.board.update({
         where: { id },
-        data: { pinned },
+        data: { pinned, pinnedAt },
     });
     res.json(updated);
 });
